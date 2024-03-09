@@ -61,18 +61,18 @@ const routes = [
     component: DataTables,
     visible: true,
   },
+  // {
+  //   name: "Requests",
+  //   layout: "/admin",
+  //   icon: (
+  //     <Icon as={MdSpatialTracking} width="20px" height="20px" color="inherit" />
+  //   ),
+  //   path: "/data-tables",
+  //   component: DataTables,
+  //   visible: true,
+  // },
   {
-    name: "Requests",
-    layout: "/admin",
-    icon: (
-      <Icon as={MdSpatialTracking} width="20px" height="20px" color="inherit" />
-    ),
-    path: "/data-tables",
-    component: DataTables,
-    visible: true,
-  },
-  {
-    name: "Vendors",
+    name: "Properties",
     layout: "/admin",
     path: "/nft-marketplace",
     icon: (
@@ -87,22 +87,22 @@ const routes = [
     secondary: true,
     visible: true,
   },
-  {
-    name: "Data Tables",
-    layout: "/admin",
-    icon: <Icon as={MdBarChart} width="20px" height="20px" color="inherit" />,
-    path: "/data-tables",
-    component: DataTables,
-    visible: true,
-  },
-  {
-    name: "Profile",
-    layout: "/admin",
-    path: "/profile",
-    icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
-    component: Profile,
-    visible: true,
-  },
+  // {
+  //   name: "Data Tables",
+  //   layout: "/admin",
+  //   icon: <Icon as={MdBarChart} width="20px" height="20px" color="inherit" />,
+  //   path: "/data-tables",
+  //   component: DataTables,
+  //   visible: true,
+  // },
+  // {
+  //   name: "Profile",
+  //   layout: "/admin",
+  //   path: "/profile",
+  //   icon: <Icon as={MdPerson} width="20px" height="20px" color="inherit" />,
+  //   component: Profile,
+  //   visible: true,
+  // },
   {
     name: "Sign In",
     layout: "/auth",

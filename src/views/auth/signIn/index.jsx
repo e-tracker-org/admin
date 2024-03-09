@@ -102,7 +102,7 @@ function SignIn() {
     <DefaultAuth
       illustrationBackground={illustration}
       image={illustration}
-      showBackToRequisite={true}
+      showBackToEtracka={true}
     >
       <Flex
         maxW={{ base: "100%", md: "max-content" }}

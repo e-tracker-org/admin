@@ -25,49 +25,37 @@ import {
   useTable,
 } from "react-table";
 import { getAllUsers } from "services/user";
+import Loader from "components/loader";
 
 export default function DevelopmentTable(props) {
-  const { columnsData, tableData } = props;
-  const [users, setUsers] = useState([]);
+  const { usersData } = props;
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
+  const [loading, setLoading] = useState();
 
-  const columns = useMemo(() => columnsData, [columnsData]);
-  const data = useMemo(() => tableData, [tableData]);
+  const users = useMemo(() => usersData, [usersData]);
+  // const data = useMemo(() => tableData, [tableData]);
 
-  const tableInstance = useTable(
-    {
-      columns,
-      data,
-    },
-    useGlobalFilter,
-    useSortBy,
-    usePagination
-  );
+  // const tableInstance = useTable(
+  //   {
+  //     columns,
+  //     data,
+  //   },
+  //   useGlobalFilter,
+  //   useSortBy,
+  //   usePagination
+  // );
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    page,
-    prepareRow,
-    initialState,
-  } = tableInstance;
-  initialState.pageSize = 11;
+  // const {
+  //   getTableProps,
+  //   getTableBodyProps,
+  //   headerGroups,
+  //   page,
+  //   prepareRow,
+  //   initialState,
+  // } = tableInstance;
+  // initialState.pageSize = 11;
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const allUsers = await getAllUsers();
-        console.log(allUsers, "All");
-        setUsers(allUsers.data);
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    }
-
-    fetchData();
-  }, []);
   const textColor = useColorModeValue("secondaryGray.900", "white");
   // const textColor = useColorModeValue("navy.700", "white");
   const textColorSecondary = "gray.400";
