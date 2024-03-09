@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 import { FaChevronLeft } from "react-icons/fa";
 
 function AuthIllustration(props) {
-  const { children, illustrationBackground, showBackToRequisite } = props;
+  const { children, illustrationBackground, showBackToEtracka } = props;
   // Chakra color mode
   return (
     <Flex position="relative" h="max-content">
@@ -30,7 +30,7 @@ function AuthIllustration(props) {
         justifyContent="start"
         direction="column"
       >
-        {showBackToRequisite && (
+        {showBackToEtracka && (
           <NavLink
             to="/admin"
             style={() => ({
@@ -52,7 +52,7 @@ function AuthIllustration(props) {
                 color="secondaryGray.600"
               />
               <Text ms="0px" fontSize="sm" color="secondaryGray.600">
-                Back to Requisite
+                Back to Etracka
               </Text>
             </Flex>
           </NavLink>
@@ -89,7 +89,7 @@ function AuthIllustration(props) {
 AuthIllustration.propTypes = {
   illustrationBackground: PropTypes.string,
   image: PropTypes.any,
-  showBackToRequisite: PropTypes.bool,
+  showBackToEtracka: PropTypes.bool,
 };
 
 export default AuthIllustration;

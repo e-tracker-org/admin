@@ -32,58 +32,35 @@ import Menu from "components/menu/MainMenu";
 import { getKycForApproval, getAllKyc, approveKyc } from "services/kyc";
 
 export default function CheckTable(props) {
-  const { columnsData, tableData } = props;
-  const [usersWithKycs, setUsersWithKyc] = useState([]);
+  const { usersData, UsersWithKycData } = props;
+  // const [usersWithKycs, setUsersWithKyc] = useState([]);
   const [users, setUsers] = useState([]);
 
-  const columns = useMemo(() => columnsData, [columnsData]);
-  const data = useMemo(() => tableData, [tableData]);
+  // const columns = useMemo(() => columnsData, [columnsData]);
+  // const data = useMemo(() => tableData, [tableData]);
 
-  const tableInstance = useTable(
-    {
-      columns,
-      data,
-    },
-    useGlobalFilter,
-    useSortBy,
-    usePagination
-  );
+  // const tableInstance = useTable(
+  //   {
+  //     columns,
+  //     data,
+  //   },
+  //   useGlobalFilter,
+  //   useSortBy,
+  //   usePagination
+  // );
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    page,
-    prepareRow,
-    initialState,
-  } = tableInstance;
-  initialState.pageSize = 11;
+  // const {
+  //   getTableProps,
+  //   getTableBodyProps,
+  //   headerGroups,
+  //   page,
+  //   prepareRow,
+  //   initialState,
+  // } = tableInstance;
+  // initialState.pageSize = 11;
 
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const allUsers = await getAllUsers();
-        setUsers(allUsers);
-
-        console.log("All Users:", allUsers);
-
-        if (allUsers && allUsers.data) {
-          const usersNotVerified = allUsers.data.filter(
-            (user) => !user?.isUserVerified
-          );
-          setUsersWithKyc(usersNotVerified);
-          console.log("Users not verified:", usersNotVerified);
-        }
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    }
-
-    fetchData();
-  }, []);
 
   const approveUserKyc = async (status, kycId) => {
     const confirmationMessage = `Are you sure you want to ${status} this KYC?`;
@@ -138,7 +115,7 @@ export default function CheckTable(props) {
           </Tr>
         </Thead>
         <Tbody>
-          {usersWithKycs.map((row, rowIndex) => (
+          {UsersWithKycData.map((row, rowIndex) => (
             <Tr key={rowIndex}>
               <Td>
                 <Flex align="center">
@@ -156,6 +133,11 @@ export default function CheckTable(props) {
                     onClick={() =>
                       approveUserKyc("approve", row.currentKyc.kycId)
                     }
+                    isDisabled={
+                      (row.currentKyc &&
+                        row.currentKyc.status !== "COMPLETE") ||
+                      !row.currentKyc
+                    }
                   >
                     Approve
                   </Button>
@@ -163,6 +145,11 @@ export default function CheckTable(props) {
                     backgroundColor="red.200"
                     onClick={() =>
                       approveUserKyc("reject", row.currentKyc.kycId)
+                    }
+                    isDisabled={
+                      (row.currentKyc &&
+                        row.currentKyc.status !== "COMPLETE") ||
+                      !row.currentKyc
                     }
                   >
                     Reject
